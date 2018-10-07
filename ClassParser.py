@@ -2,6 +2,12 @@ from bs4 import BeautifulSoup
 import requests
 
 def getAvailableSubjects(parsed_html):
+    """
+    Gets the subject options available in the input.
+
+    :param parsed_html: A BeautifulSoup object containing parsed html from the courselist selection page
+    :returns: a dictionary that maps human-readable subject names to their 4-letter codes
+    """
     subjects_html = parsed_html.find(id='term_subj').find_all('option')
     subjects = {subject.string:subject['value'] for subject in subjects_html}
     return subjects
