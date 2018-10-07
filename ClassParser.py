@@ -27,8 +27,9 @@ def getOpenCourses(subjects):
                 #print()
                 f.write('\n')
 
-response = requests.get('https://courselist.wm.edu/courselist')
-parsed = BeautifulSoup(response.text, 'html5lib')
-subjects = getAvailableSubjects(parsed)
-attributes = getAvailableAttributes(parsed)
-getOpenCourses({k:subjects[k] for k in subjects if k != 'ALL'})
+if __name__ == "__main__":
+    response = requests.get('https://courselist.wm.edu/courselist')
+    parsed = BeautifulSoup(response.text, 'html5lib')
+    subjects = getAvailableSubjects(parsed)
+    attributes = getAvailableAttributes(parsed)
+    getOpenCourses({k:subjects[k] for k in subjects if k != 'ALL'})
