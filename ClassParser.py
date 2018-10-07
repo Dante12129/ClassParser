@@ -15,7 +15,7 @@ def getOpenCourses(subjects):
     with open('classes.txt', 'w', 1) as f:
         for full, subject in subjects.items():
             f.write(full + ':\n')
-            response = requests.get('https://courselist.wm.edu/courselist/courseinfo/searchresults?term_code=201910&term_subj=%s&attr=0&attr2=0&levl=UG&status=OPEN&ptrm=0&search=Search' % subject)
+            response = requests.get(f'https://courselist.wm.edu/courselist/courseinfo/searchresults?term_code=201910&term_subj={subject}&attr=0&attr2=0&levl=UG&status=OPEN&ptrm=0&search=Search')
             parsed = BeautifulSoup(response.text, 'html5lib')
             rows = parsed.find(id='results').find('table').find('tbody').find_all('tr')
             for row in rows:
