@@ -13,6 +13,12 @@ def getAvailableSubjects(parsed_html):
     return subjects
 
 def getAvailableAttributes(parsed_html):
+    """
+    Gets the attribute options available in the input.
+
+    :param parsed_html: A BeautifulSoup object containing parsed html from the courselist selection page
+    :returns: a dictionary that maps human-readable attrivutes names to their codes
+    """
     attributes_html = parsed_html.find(id='attr').find_all('option')
     attributes = {attribute.string:attribute['value'] for attribute in attributes_html}
     return attributes
