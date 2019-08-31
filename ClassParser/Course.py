@@ -4,7 +4,7 @@ from typing import List
 
 @dataclass
 class Course:
-    """ Documentation """
+    """ Model for a course that contains all the information the Course List has on a course. """
 
     crn: int
     id: str
@@ -20,5 +20,7 @@ class Course:
 
     @property
     def status(self) -> str:
-        """ Documentation """
+        """ Gets the open-vs-closed status of the course as a string.
+            :return "Open" or "Closed" depending on the course's status.
+        """
         return "Open" if self.open else "Closed"
