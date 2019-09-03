@@ -1,2 +1,2 @@
 from .Course import Course
-from .Fetch import Semester, buildURL
+from .Fetch import Semester, Subject, buildURL
