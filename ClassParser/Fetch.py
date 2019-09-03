@@ -41,7 +41,7 @@ class Subject(Enum):
     French = "FREN"
     GenderSexualityWomenStudies = "GSWS"
     GeographicInformationSystems = "GIS"
-    Geology = "Geology"
+    Geology = "GEOL"
     German = "GRMN"
     GlobalStudies = "GBST"
     Government = "GOVT"
@@ -81,9 +81,9 @@ class Subject(Enum):
     Writing = "WRIT"
 
 
-def buildURL(year: int, semester: Semester):
+def buildURL(year: int, semester: Semester, subject: Subject):
     semester_code = "10" if semester == Semester.Fall else "20"
-    full_year = str(year + 1 if semester == Semester.Fall else 0) + semester_code
+    full_year = str(year + (1 if semester == Semester.Fall else 0)) + semester_code
 
     base_url = "https://courselist.wm.edu/courselist/courseinfo/searchresults"
-    return f"{base_url}?term_code={full_year}&term_subj=CSCI&attr=0&attr2=0&levl=UG&status=0&ptrm=0&search=Search"
+    return f"{base_url}?term_code={full_year}&term_subj={subject.value}&attr=0&attr2=0&levl=UG&status=0&ptrm=0&search=Search"
