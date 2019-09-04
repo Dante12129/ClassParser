@@ -81,9 +81,15 @@ class Subject(Enum):
     Writing = "WRIT"
 
 
-def buildURL(year: int, semester: Semester, subject: Subject):
+class Status(Enum):
+    Any = 0
+    Open = "OPEN"
+    Closed = "CLOSED"
+
+
+def buildURL(year: int, semester: Semester, subject: Subject, status: Status):
     semester_code = "10" if semester == Semester.Fall else "20"
     full_year = str(year + (1 if semester == Semester.Fall else 0)) + semester_code
 
     base_url = "https://courselist.wm.edu/courselist/courseinfo/searchresults"
-    return f"{base_url}?term_code={full_year}&term_subj={subject.value}&attr=0&attr2=0&levl=UG&status=0&ptrm=0&search=Search"
+    return f"{base_url}?term_code={full_year}&term_subj={subject.value}&attr=0&attr2=0&levl=UG&status={status.value}&ptrm=0&search=Search"
